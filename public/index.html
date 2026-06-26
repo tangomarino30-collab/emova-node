@@ -33,7 +33,7 @@
   <script>
     async function cargarAlertas() {
       try {
-        const res = await fetch('/alertas');
+        const res = await fetch('/api/alertas');
         const data = await res.json();
         const contenido = document.getElementById("contenido");
         document.getElementById("loading").style.display = "none";
