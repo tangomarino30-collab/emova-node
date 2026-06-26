@@ -1,0 +1,22 @@
+name: Alertas Subte Telegram
+
+on:
+  schedule:
+    - cron: '*/20 * * * *'
+  workflow_dispatch:
+
+jobs:
+  alertas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - run: pip install requests
+      - run: python bot.py
+        env:
+          CLIENT_ID: ${{ secrets.GCBA_CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.GCBA_CLIENT_SECRET }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
